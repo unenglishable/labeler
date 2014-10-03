@@ -1,6 +1,7 @@
 {
   "name": "labeler",
   "main": "labeler",
+  "version": "0.0.0",
   "repository": {
     "type": "git"
   },
