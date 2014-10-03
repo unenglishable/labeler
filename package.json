@@ -1,0 +1,11 @@
+{
+  "name": "labeler",
+  "main": "labeler",
+  "repository": {
+    "type": "git"
+  },
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "cursed": "git://github.com/unenglishable/cursed"
+  }
+}
