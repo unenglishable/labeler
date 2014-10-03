@@ -1,12 +1,18 @@
 var labeler = require('./labeler');
+var threshold = 25;
 
-var first = labeler('first:  ');
-var second = labeler('second: ');
-var third = labeler('third:  ');
-
-first.value = 0;
-second.value = 0;
-third.value = 0;
+labelers = [
+  labeler('first:  '),
+  labeler('second: '),
+  labeler('third:  '),
+  labeler('fourth:  '),
+  labeler('fifth:  '),
+  labeler('sixth:  '),
+  labeler('seventh:  '),
+  labeler('eighth:  '),
+  labeler('ninth:  '),
+  labeler('tenth:  ')
+];
 
 var loop = function(labeler, wait) {
   setInterval(function() {
@@ -15,6 +21,7 @@ var loop = function(labeler, wait) {
   }, wait);
 };
 
-loop(first, 10);
-loop(second, 500);
-loop(third, 1000);
+labelers.forEach(function(labeler) {
+  labeler.value = 0;
+  loop(labeler, Math.floor((Math.random() * threshold) + 1));
+});
