@@ -13,6 +13,11 @@ Labeler.prototype.write = function(string) {
   process.stdout.write(chalk.green.bold(string)+'\r');
   currentRow = this.row;
 };
+Labeler.prototype.tag = function(string, tag) {
+  cursor.move(this.label.length, this.row - currentRow);
+  process.stdout.write(chalk.green.bold(string) + ' ' + chalk.red(tag) + '\r');
+  currentRow = this.row;
+};
 Labeler.prototype.init = function() {
   cursor.down(this.row - currentRow);
   process.stdout.write('\n');
