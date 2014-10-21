@@ -3,16 +3,16 @@ var labeler = require(path.join(__dirname, 'index'));
 var threshold = 25;
 
 labelers = [
-  {labeler: labeler('first:  '), value: 0},
-  {labeler: labeler('second: '), value: 0},
-  {labeler: labeler('third:  '), value: 0},
-  {labeler: labeler('fourth:  '), value: 0},
-  {labeler: labeler('fifth:  '), value: 0},
-  {labeler: labeler('sixth:  '), value: 0},
-  {labeler: labeler('seventh:  '), value: 0},
-  {labeler: labeler('eighth:  '), value: 0},
-  {labeler: labeler('ninth:  '), value: 0},
-  {labeler: labeler('tenth:  '), value: 0}
+  {labeler: labeler.create('first:  '), value: 0},
+  {labeler: labeler.create('second: '), value: 0},
+  {labeler: labeler.create('third:  '), value: 0},
+  {labeler: labeler.create('fourth:  '), value: 0},
+  {labeler: labeler.create('fifth:  '), value: 0},
+  {labeler: labeler.create('sixth:  '), value: 0},
+  {labeler: labeler.create('seventh:  '), value: 0},
+  {labeler: labeler.create('eighth:  '), value: 0},
+  {labeler: labeler.create('ninth:  '), value: 0},
+  {labeler: labeler.create('tenth:  '), value: 0}
 ];
 
 var loop = function(labelPair, wait) {
@@ -24,4 +24,9 @@ var loop = function(labelPair, wait) {
 
 labelers.forEach(function(labelPair) {
   loop(labelPair, Math.floor((Math.random() * threshold) + 1));
+});
+
+process.on('SIGINT', function() {
+  labeler.end();
+  process.exit();
 });
