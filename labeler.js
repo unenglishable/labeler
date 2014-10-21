@@ -1,10 +1,12 @@
 var cursor = require('cursed');
 var chalk = require('chalk');
 var currentRow = 0;
+var labelerCount = 0;
 
 var Labeler = module.exports = function(options) {
   this.label = options.label;
-  this.row = options.row;
+  this.row = labelerCount;
+  labelerCount++;
 };
 Labeler.prototype.write = function(string) {
   cursor.move(this.label.length, this.row - currentRow);
@@ -18,4 +20,7 @@ Labeler.prototype.init = function() {
   process.stdout.write(chalk.blue.bold(this.label));
   process.stdout.write('\r');
   cursor.up(this.row - currentRow);
+};
+Labeler.end = function() {
+  cursor.down(labelerCount - currentRow);
 };
