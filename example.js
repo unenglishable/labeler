@@ -17,8 +17,13 @@ labelers = [
 
 var loop = function(labelPair, wait) {
   setInterval(function() {
-    labelPair.labeler.write(labelPair.value.toString());
-    labelPair.value++;
+    if (labelPair.value < 1000) {
+      labelPair.labeler.write(labelPair.value.toString());
+      labelPair.value++;
+    }
+    else {
+      labelPair.labeler.tag(labelPair.value.toString(), '(finished)');
+    }
   }, wait);
 };
 
@@ -28,5 +33,6 @@ labelers.forEach(function(labelPair) {
 
 process.on('SIGINT', function() {
   labeler.end();
+  console.log('done.');
   process.exit();
 });
